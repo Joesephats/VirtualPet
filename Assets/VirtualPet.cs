@@ -1,14 +1,25 @@
+//////////////////////////////////////////////
+//Assignment/Lab/Project: VirtualPet
+//Name: Tristin Gatt
+//Section: SGD.213.2172
+//Instructor: Brian Sowers
+//Date: 02/25/2024
+/////////////////////////////////////////////
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class VirtualPet
 {
+    //Pet Stats and name
     private string name;
+    //range from 1 - 10
     private int hungerLevel;
     private int happinessLevel;
     private int energyLevel;
 
+    //properties for pet stats
     public string Name 
     {
         get { return name; }
@@ -33,6 +44,7 @@ public class VirtualPet
         set { energyLevel = value; }
     }
 
+    //constructor with name and default starting stats
     public VirtualPet(string newName)
     {
         name = newName;
@@ -41,6 +53,7 @@ public class VirtualPet
         energyLevel = 5;
     }
 
+    //constructor for setting custom starting stats
     public VirtualPet(string newName, int startingHunger, int startingHappiness, int startingEnergy)
     {
         name = newName;
@@ -49,6 +62,7 @@ public class VirtualPet
         energyLevel = startingEnergy;
     }
 
+    //give pet rest. uses hunger to reset energy
     public void Rest()
     {
         if (energyLevel <= 4)
@@ -62,6 +76,7 @@ public class VirtualPet
         }
     }
 
+    //give pet food. gives pet 5 hunger
     public void Eat()
     {
         hungerLevel += 5;
@@ -71,6 +86,7 @@ public class VirtualPet
         }
     }
 
+    //play with pet. uses hunger and energy to reset happiness
     public void Play()
     {
         happinessLevel += 3;
@@ -79,10 +95,11 @@ public class VirtualPet
             happinessLevel = 10;
         }
 
-        energyLevel -= 1;
-        hungerLevel -= 1;
+        TirePet();
+        StarvePet();
     }
 
+    //decrement each stat. called on timer
     public void StarvePet()
     {
         hungerLevel -= 1;
