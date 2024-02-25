@@ -37,7 +37,7 @@ public class VirtualPet
     {
         name = newName;
         hungerLevel = 8;
-        happinessLevel = 6;
+        happinessLevel = 10;
         energyLevel = 5;
     }
 
@@ -51,10 +51,10 @@ public class VirtualPet
 
     public void Rest()
     {
-        if (energyLevel < 4)
+        if (energyLevel <= 4)
         {
             energyLevel = 10;
-            hungerLevel -= 3;
+            hungerLevel -= 4;
             if (hungerLevel < 1)
             {
                 hungerLevel = 1;
@@ -74,21 +74,25 @@ public class VirtualPet
     public void Play()
     {
         happinessLevel += 3;
+        if (happinessLevel > 10)
+        {
+            happinessLevel = 10;
+        }
 
         energyLevel -= 1;
         hungerLevel -= 1;
     }
 
-    void StarvePet(VirtualPet pet)
+    public void StarvePet()
     {
-
+        hungerLevel -= 1;
     }
-    void BorePet()
+    public void BorePet()
     {
-
+        happinessLevel -= 1;
     }
-    void TirePet()
+    public void TirePet()
     {
-
+        energyLevel -= 1;
     }
 }
